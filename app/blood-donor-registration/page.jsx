@@ -4,6 +4,7 @@ import HeroSection from '../Components/Hero';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import VerifyEmailComponent from '../Components/VerifyEmailComponent';
+import Navbar from '../Components/Navbar';
 
 const Page = () => {
   const [formData, setFormData] = useState({
@@ -55,7 +56,9 @@ const Page = () => {
   }, []);
 
   return (
+
     <div className="lg:flex flex-col h-screen">
+      <Navbar/>
       <main className="flex-grow grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:h-full">
         <div className="w-full lg:block my-auto py-auto px-5 lg:w-lg">
           {isSubmitted ? (
