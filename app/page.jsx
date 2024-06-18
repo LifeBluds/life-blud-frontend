@@ -10,7 +10,7 @@ import Button from "./Components/Button";
 
 export default function Home() {
   return (
-    <ToggleBorderProvider>
+    <>
       <Navbar/>
       <div className="lg:flex flex-col h-screen">
         <main className="flex-grow grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:h-full">
@@ -24,6 +24,6 @@ export default function Home() {
           <HeroSection />
         </main>
       </div>
-    </ToggleBorderProvider>
+    </>
   );
 }

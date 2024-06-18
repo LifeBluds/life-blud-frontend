@@ -2,19 +2,23 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const Logincomponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-   
-    if (email && password) {
+    try {
+      const response = await axios.post('https://gnarly-school-just-rail-production.pipeops.app/api/auth/login', { email, password });
+      localStorage.setItem('token', response.data.token);
       router.push('/dashboard');
-    } else {
-      // Handle login error
+    } catch (error) {
+      setError('Invalid email or password');
+      console.log(error);
     }
   };
 
@@ -47,8 +51,9 @@ const Logincomponent = () => {
                 className="w-full p-2 border border-gray-300"
                 required
               />
-              <p className='text-red-800 text-end py-4 font-helvetica'>Forgot password?</p>
+              <p className='text-red-800 text-end py-4 font-helvetica'><Link href='/login/resetpassword'>Forgot password?</Link></p>
             </div>
+            {error && <p className="text-red-800">{error}</p>}
             <button
               type="submit"
               className="w-full bg-red-800 text-white p-3 hover:bg-red-700 transition duration-300"

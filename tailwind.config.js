@@ -10,6 +10,7 @@ module.exports = {
       fontFamily:{
         gilory:['Gilroy Medium', 'sans-serif'],
         'gilroy-bold':['Gilroy Bold', 'sans-serif'],
+        'gilroy-medium':['Gilroy Medium', 'sans-serif'],
         helvetica:['Helvetica', 'sans-serif']
       },
       backgroundImage: {

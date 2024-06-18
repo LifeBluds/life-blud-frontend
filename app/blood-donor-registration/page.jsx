@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import VerifyEmailComponent from '../Components/VerifyEmailComponent';
 import Navbar from '../Components/Navbar';
+import axios from 'axios';
 
 const Page = () => {
   const [formData, setFormData] = useState({
@@ -36,11 +37,16 @@ const Page = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate successful form submission
-    console.log(formData);
-    setIsSubmitted(true);
+    try {
+      const response = await axios.post('https://gnarly-school-just-rail-production.pipeops.app/api/auth/onboard-facility', formData);
+      console.log(response.data); // Handle the response as needed
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Error submitting the form:', error);
+      // Handle the error as needed
+    }
   };
 
   const [screenWidth, setScreenWidth] = useState(0);
